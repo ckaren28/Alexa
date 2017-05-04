@@ -15,50 +15,47 @@ const Alexa = require('alexa-sdk');
 const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
 
 const languageStrings = {
-    'en-GB': {
-        translation: {
-            FACTS: [
-                'A year on Mercury is just 88 days long.',
-                'Despite being farther from the Sun, Venus experiences higher temperatures than Mercury.',
-                'Venus rotates anti-clockwise, possibly because of a collision in the past with an asteroid.',
-                'On Mars, the Sun appears about half the size as it does on Earth.',
-                'Earth is the only planet not named after a god.',
-                'Jupiter has the shortest day of all the planets.',
-                'The Milky Way galaxy will collide with the Andromeda Galaxy in about 5 billion years.',
-                'The Sun contains 99.86% of the mass in the Solar System.',
-                'The Sun is an almost perfect sphere.',
-                'A total solar eclipse can happen once every 1 to 2 years. This makes them a rare event.',
-                'Saturn radiates two and a half times more energy into space than it receives from the sun.',
-                'The temperature inside the Sun can reach 15 million degrees Celsius.',
-                'The Moon is moving approximately 3.8 cm away from our planet every year.',
-            ],
-            SKILL_NAME: 'DrinkName',
-            GET_FACT_MESSAGE: "Here's your fact: ",
-            HELP_MESSAGE: 'You can say tell me a space fact, or, you can say exit... What can I help you with?',
-            HELP_REPROMPT: 'What can I help you with?',
-            STOP_MESSAGE: 'Goodbye!',
-        },
-    },
     'en-US': {
         translation: {
             FACTS: [
-                'A year on Mercury is just 88 days long.',
-                'Despite being farther from the Sun, Venus experiences higher temperatures than Mercury.',
-                'Venus rotates counter-clockwise, possibly because of a collision in the past with an asteroid.',
-                'On Mars, the Sun appears about half the size as it does on Earth.',
-                'Earth is the only planet not named after a god.',
-                'Jupiter has the shortest day of all the planets.',
-                'The Milky Way galaxy will collide with the Andromeda Galaxy in about 5 billion years.',
-                'The Sun contains 99.86% of the mass in the Solar System.',
-                'The Sun is an almost perfect sphere.',
-                'A total solar eclipse can happen once every 1 to 2 years. This makes them a rare event.',
-                'Saturn radiates two and a half times more energy into space than it receives from the sun.',
-                'The temperature inside the Sun can reach 15 million degrees Celsius.',
-                'The Moon is moving approximately 3.8 cm away from our planet every year.',
+                'Vodka.',
+                'Tequilla. turn up',
+                'wine, fancy or 2 buck chucks would work',
+                'Rum',
+                'Beer',
+                'a beer and chug some 40s',
+                'Whiskey',
+                'champagne',
+                'a Bloody mary',
+                'water',
+                'Moonshine',
+                'Gin and juice',
+                'Bourbon',
+                "Henney",
+                "Sangria",
+                "cider",
+                "Absinthe",
+                "something creamy, may I suggest a white russian",
+                "Baileys or Kahlua",
+                "screwdriver",
+                "jaeger",
+                "soju",
+                "sake",
+                "something blue",
+                "a long island",
+                "a martini",
+                "brandy",
+                "malt liquor",
+                "wine cooler",
+                "a dark and stormy",
+                "mulled wine",
+                "nothing"
+
+
             ],
             SKILL_NAME: 'Drinkname',
-            GET_FACT_MESSAGE: "Here's your fact: ",
-            HELP_MESSAGE: 'You can say tell me a space fact, or, you can say exit... What can I help you with?',
+            GET_FACT_MESSAGE: "You should drink  ",
+            HELP_MESSAGE: 'You can say drink. Ask for a type of drink. Or... you can say exit... What can I help you with?',
             HELP_REPROMPT: 'What can I help you with?',
             STOP_MESSAGE: 'Goodbye!',
         },
@@ -71,10 +68,8 @@ const handlers = {
         this.emit('GetFact');
     },
     'Drink': function () {
-        this.emit(':tell','vodka');
+        // this.emit(':tell','vodka');
 
-
-        // Get a random space fact from the space facts list
         // Use this.t() to get corresponding language data
         const factArr = this.t('FACTS');
         const factIndex = Math.floor(Math.random() * factArr.length);
@@ -98,6 +93,11 @@ const handlers = {
     'SessionEndedRequest': function () {
         this.emit(':tell', this.t('STOP_MESSAGE'));
     },
+    'Unhandled': function () {
+      const speechOutput = this.t('HELP_MESSAGE');
+      const reprompt = this.t('HELP_MESSAGE');
+      this.emit(':ask', speechOutput, reprompt);
+        }
 };
 
 exports.handler = (event, context) => {
