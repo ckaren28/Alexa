@@ -1,0 +1,73 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "Drink",
+      "samples": [
+        "What should I drink",
+        "Alcoholic beverages",
+        "drinks",
+        "tell me what to drink",
+        "what should we drink",
+        "give me ideas about what to drink",
+        "hmmmm give me a drink",
+        "I'm thirsty"
+      ],
+      "slots": []
+    }
+  ],
+  "types": [
+    {
+      "name": "American",
+      "values": [
+        {
+          "name": {
+            "value": "Bourbon"
+          }
+        },
+        {
+          "name": {
+            "value": "Hennessy"
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Confirm.Intent-Drink",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Alcohol, right?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "Drink",
+        "confirmationRequired": true,
+        "prompts": {
+          "confirm": "Confirm.Intent-Drink"
+        },
+        "slots": []
+      }
+    ]
+  }
+}
